@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Gemini Gem Interface</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 2em auto; }
+        textarea { width: 100%; height: 100px; }
+        #result { margin-top: 1em; padding: 1em; background-color: #f0f0f0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h1>Ask My Gemini Gem</h1>
+    <p>Type your question or prompt below and click "Submit".</p>
+
+    <textarea id="prompt-input" placeholder="e.g., What is the capital of Pennsylvania?"></textarea>
+    <button id="submit-btn">Submit</button>
+
+    <h2>Response:</h2>
+    <div id="result">...</div>
+
+    <script>
+        // Get references to the HTML elements
+        const submitButton = document.getElementById('submit-btn');
+        const promptInput = document.getElementById('prompt-input');
+        const resultDiv = document.getElementById('result');
+
+        // Listen for clicks on the submit button
+        submitButton.addEventListener('click', async () => {
+            const prompt = promptInput.value;
+            resultDiv.textContent = 'Thinking...'; // Give user feedback
+
+            try {
+                // Use the JavaScript fetch API to send data to your backend
+                const response = await fetch('http://localhost:4567/ask_gemini', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ prompt: prompt })
+                });
+
+                const data = await response.json();
+
+                // Display the response from your API in the result div
+                resultDiv.textContent = data.response;
+
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.textContent = 'An error occurred. Please check the console.';
+            }
+        });
+    </script>
+
+</body>
+</html>
