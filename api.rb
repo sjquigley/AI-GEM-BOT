@@ -3,7 +3,7 @@
 require 'sinatra'
 require 'sinatra/cross_origin' # Gem for handling web browser security
 require 'json'
-require 'my_custom_gemini_gem' # Your actual gem
+require 'TechWriter_gem' # Your actual gem
 
 # Configure Cross-Origin Resource Sharing (CORS)
 # This is crucial to allow your website to talk to your API
