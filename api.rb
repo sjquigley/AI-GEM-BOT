@@ -1,7 +1,7 @@
 # api.rb
 
-require 'TechWriter'
-require 'TechWriter/cross_origin' # Gem for handling web browser security
+require 'sinatra'
+require 'sinatra/cross_origin' # Gem for handling web browser security
 require 'json'
 require 'my_custom_gemini_gem' # Your actual gem
 
@@ -26,7 +26,7 @@ post '/ask_gemini' do
 
   # Use your gem to get a response from the Google Gemini API
   # The method name 'ask' is just an example
-  gemini_response = MyCustomGeminiGem.ask(prompt)
+  gemini_response = TechWriter.ask(prompt)
 
   # Send the response back to the website as JSON
   content_type :json
