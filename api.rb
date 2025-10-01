@@ -1,7 +1,7 @@
 # api.rb
 
-require 'sinatra'
-require 'sinatra/cross_origin' # Gem for handling web browser security
+require 'TechWriter'
+require 'TechWriter/cross_origin' # Gem for handling web browser security
 require 'json'
 require 'my_custom_gemini_gem' # Your actual gem
 
